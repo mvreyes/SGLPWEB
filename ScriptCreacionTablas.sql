@@ -7,12 +7,12 @@ CREATE TABLE Usuarios (
     Nombre Varchar(100),
     CorreoElectronico Varchar(100),
     Rol Varchar(50),
-    Contraseña Varchar(255) NOT NULL
+    ContraseÃ±a Varchar(255) NOT NULL
 );
 
 CREATE TABLE Cliente (
     idCliente int PRIMARY KEY IDENTITY(1,1),
-	Identificación Varchar(13) NOT NULL,
+	IdentificaciÃ³n Varchar(13) NOT NULL,
     Nombres Varchar(100) NOT NULL,
 	Apellidos Varchar(100) NOT NULL,
     CorreoElectronico Varchar(100),
@@ -24,7 +24,7 @@ CREATE TABLE Cliente (
 CREATE TABLE IngresoClientes (
     idIngresoClientes int PRIMARY KEY IDENTITY(1,1),
     NombresUsuario Varchar(50) NOT NULL,
-    Contraseña Varchar(255) NOT NULL,
+    ContraseÃ±a Varchar(255) NOT NULL,
 	idCliente int FOREIGN KEY REFERENCES Cliente(idCliente)
 );
 
@@ -62,4 +62,15 @@ CREATE TABLE AuditoriaUsuarios (
     Fecha DATETIME DEFAULT GETDATE(),
     Descripcion Varchar(500),
 	idUsuario INT FOREIGN KEY REFERENCES Usuarios(idUsuario)
+);
+
+CREATE TABLE EventoCalendario (
+    idEvento int PRIMARY KEY IDENTITY(1,1),
+    Titulo Varchar(100) NOT NULL,
+    Descripcion Varchar(500),
+    FechaInicio Datetime NOT NULL,
+    FechaFin Datetime,
+    TipoEvento Varchar(50),
+    Notificar Bit Default 1,
+	idCaso int FOREIGN KEY REFERENCES Caso(idCaso),
 );
